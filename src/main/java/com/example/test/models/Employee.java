@@ -6,31 +6,38 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "employees", schema ="hr")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "employee_gen", sequenceName= "hr.employees_seq", allocationSize= 1)
-public class Employee implements Serializable {
-
-    private static final long serialVersionUID = 8231148457786541960L;
+@NoArgsConstructor
+@Table(name = "EMPLOYEES",schema = "HR")
+@SequenceGenerator(name = "employees_gen", sequenceName = "hr.employees_seq", allocationSize = 1)
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_gen")
-    private Integer EMPLOYEE_ID;
-    private String FIRST_NAME;
-    private String LAST_NAME;
-    private String PHONE_NUMBER;
-    private String EMAIL;
-    private Date HIRE_DATE;
-    private String JOB_ID;
-    private Integer SALARY;
-    private Integer COMMISSION_PCT;
-    private Integer MANAGER_ID;
-    private Integer DEPARTMENT_ID;
-
-
+    @Column(name = "EMPLOYEE_ID")
+    private Long employeeId;
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+    @Column(name = "EMAIL")
+    private String email;
+    @Column(name = "HIRE_DATE")
+    private Date hireDate;
+    @Column(name = "JOB_ID")
+    private String jobId;
+    @Column(name = "SALARY")
+    private BigDecimal salary;
+    @Column(name = "COMMISSION_PCT")
+    private Integer commissionPct;
+    @Column(name = "MANAGER_ID")
+    private Long managerId;
+    @Column(name = "DEPARTMENT_ID")
+    private Long departmentId;
 }

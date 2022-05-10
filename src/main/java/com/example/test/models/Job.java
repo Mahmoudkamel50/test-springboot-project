@@ -4,21 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+
 @Entity
-@Table(name = "jobs", schema ="hr")
+@Table(name = "JOBS",schema = "HR")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Job implements Serializable {
-
-    private static final long serialVersionUID = 6875389038299438806L;
-
+@NoArgsConstructor
+public class Job {
     @Id
-    private String JOB_ID;
-    private String JOB_TITLE;
-    private Integer MIN_SALARY;
-    private Integer MAX_SALARY;
-
+    @Column(name = "JOB_ID")
+    private String jobId;
+    @Column(name = "JOB_TITLE")
+    private String jobTitle;
+    @Column(name = "MIN_SALARY")
+    private BigDecimal minSalary;
+    @Column(name = "MAX_SALARY")
+    private BigDecimal maxSalary;
 }

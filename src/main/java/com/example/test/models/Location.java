@@ -5,27 +5,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity
-@Table(name = "locations", schema ="hr")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "department_gen", sequenceName= "hr.locations_gen", allocationSize= 1)
-public class Location implements Serializable {
+@NoArgsConstructor
+@Entity
+@Table(name = "LOCATIONS",schema = "HR")
+@SequenceGenerator(name = "locations_gen", sequenceName = "hr.locations_seq", allocationSize = 1)
 
-
-    private static final long serialVersionUID = 5533925872032959772L;
+public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locations_gen")
-    private Integer LOCATION_ID;
-    private String STREET_ADDRESS;
-    private String POSTAL_CODE;
-    private String CITY;
-    private String STATE_PROVINCE;
-    private String COUNTRY_ID;
-
-
-
+    @Column(name = "LOCATION_ID")
+    private Long locationId;
+    @Column(name = "STREET_ADDRESS")
+    private String streetAddress;
+    @Column(name = "POSTAL_CODE")
+    private String postalCode;
+    @Column(name = "CITY")
+    private String city;
+    @Column(name = "STATE_PROVINCE")
+    private String stateProvince;
+    @Column(name = "COUNTRY_ID")
+    private String countryId;
 }

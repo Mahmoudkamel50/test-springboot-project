@@ -2,6 +2,7 @@ package com.example.test.controllers;
 
 import com.example.test.models.Department;
 import com.example.test.services.DepartmentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,17 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/department")
+@RequiredArgsConstructor
 public class DepartmentController {
     @Autowired
-    private DepartmentService departmentService;
+    private  DepartmentService departmentService;
 
     @GetMapping
     public ResponseEntity<?> getDepartments(){
         return new ResponseEntity<>(departmentService.getDepartments(), HttpStatus.OK);
     }
-    @GetMapping("{/DEPARTMENT_ID}")
-    public ResponseEntity<?> getDepartment(Integer DEPARTMENT_ID){
-        return new ResponseEntity<>(departmentService.getDepartment(DEPARTMENT_ID), HttpStatus.OK);
+    @GetMapping(path = "{departmentId}")
+    public ResponseEntity<?> getDepartment(@PathVariable Long departmentId){
+        return new ResponseEntity<>(departmentService.getDepartment(departmentId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -27,14 +29,13 @@ public class DepartmentController {
         return new ResponseEntity<> (departmentService.createDepartment(department), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{DEPARTMENT_ID}")
-    public  ResponseEntity<?> updateDepartment(@PathVariable Integer DEPARTMENT_ID, @RequestBody Department department){
-        return new ResponseEntity<>(departmentService.updateDepartment(DEPARTMENT_ID,department), HttpStatus.OK);
+    @PutMapping(path = "/update/{departmentId}")
+    public  ResponseEntity<?> updateDepartment(@PathVariable Long departmentId, @RequestBody Department department){
+        return new ResponseEntity<>(departmentService.updateDepartment(departmentId,department), HttpStatus.OK);
     }
-
-    @DeleteMapping("/{DEPARTMENT_ID}")
-    public  ResponseEntity<?> deleteDepartment(@PathVariable Integer DEPARTMENT_ID){
-        departmentService.deleteDepartment(DEPARTMENT_ID);
+    @DeleteMapping(path = "/delete/{departmentId}")
+    public  ResponseEntity<?> deleteDepartment(@PathVariable Long departmentId){
+        departmentService.deleteDepartment(departmentId);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

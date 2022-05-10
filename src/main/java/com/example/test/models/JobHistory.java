@@ -4,25 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "jobHistory", schema ="hr")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobHistory implements Serializable {
-
-    private static final long serialVersionUID = 2521536430892150559L;
+@Entity
+@Table(name = "JOB_HISTORY",schema = "HR")
+public class JobHistory{
     @Id
-    private Integer EMPLOYEE_ID;
-    private Date START_DATE;
-    private Date END_DATE;
-    private String JOB_ID;
-    private Integer DEPARTMENT_ID;
-
+    @Column(name = "EMPLOYEE_ID")
+    private Long employeeId;
+    @Column(name = "START_DATE")
+    private Date startDate;
+    @Column(name = "END_DATE")
+    private Date endDate;
+    @Column(name = "JOB_ID")
+    private String jobId;
+    @Column(name = "DEPARTMENT_ID")
+    private Long departmentId;
 }

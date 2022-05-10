@@ -1,10 +1,8 @@
 package com.example.test.repositories;
 
-import com.example.test.models.Regions;
+import com.example.test.models.Region;
 import org.springframework.data.repository.CrudRepository;
 
-import java.io.Serializable;
-
-public interface RegionsRepo extends CrudRepository<Regions, Serializable> {
-
+public interface RegionsRepo extends CrudRepository<Region, Long> {
+    Region findByRegionId(Long id);
 }
