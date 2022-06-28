@@ -9,23 +9,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @RestController
 @RequestMapping("/employee")
 @RequiredArgsConstructor
+
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping(path ="{employeeId}")
-    public ResponseEntity<?> getEmployee(@PathVariable Long employeeId) {
-
+    public ResponseEntity<?> getEmployee(@PathVariable Long employeeId){
+        if (employeeId < 1){
+            return new ResponseEntity<>("enter valid number", HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getEmployees() {
 
-        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+        return new ResponseEntity<>( employeeService.getEmployees(), HttpStatus.OK);
     }
 
     @PostMapping
