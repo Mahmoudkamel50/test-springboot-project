@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_gen")
+    @Min(value = 1, message = "enter valid number")
     @Column(name = "EMPLOYEE_ID")
     private Long employeeId;
     @Column(name = "FIRST_NAME")

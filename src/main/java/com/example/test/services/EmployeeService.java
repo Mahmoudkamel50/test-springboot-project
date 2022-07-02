@@ -5,8 +5,6 @@ import com.example.test.repositories.EmployeeRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import java.util.List;
 
 @Service
@@ -19,10 +17,7 @@ public class EmployeeService {
         return ( List<Employee>)employeeRepo.findAll();
     }
 
-    public Employee getEmployee(Long empId) {
-
-        return employeeRepo.findByEmployeeId(empId);
-    }
+    public Employee getEmployee(Long empId) {return employeeRepo.findByEmployeeId(empId);}
 
     public Employee createEmployees(Employee employee) {
 
