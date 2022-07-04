@@ -9,8 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpServerErrorException;
 
-import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/employee")
@@ -20,8 +21,13 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
     @GetMapping(path ="{employeeId}")
-    public ResponseEntity<?> getEmployee(@PathVariable @Valid Long employeeId){
-        return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
+    public ResponseEntity<?> getEmployee(@PathVariable @Min(value = 1, message = "enter valid number") Long employeeId){
+        try {
+            return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
+        }catch (HttpServerErrorException.InternalServerError ex){
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping

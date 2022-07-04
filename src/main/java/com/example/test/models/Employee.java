@@ -19,7 +19,6 @@ import java.util.Date;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employees_gen")
-    @Min(value = 1, message = "enter valid number")
     @Column(name = "EMPLOYEE_ID")
     private Long employeeId;
     @Column(name = "FIRST_NAME")
