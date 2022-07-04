@@ -33,7 +33,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<?> getEmployees() {
 
-        return new ResponseEntity<>( employeeService.getEmployees(), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
     }
 
     @PostMapping
