@@ -3,31 +3,25 @@ package com.example.test.controllers;
 
 import com.example.test.models.Employee;
 import com.example.test.services.EmployeeService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpServerErrorException;
 
 import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping("/employee")
-@RequiredArgsConstructor
 @Validated
 public class EmployeeController {
+
     @Autowired
     private EmployeeService employeeService;
+    
     @GetMapping(path ="{employeeId}")
-    public ResponseEntity<?> getEmployee(@PathVariable @Min(value = 1, message = "enter valid number") Long employeeId){
-        try {
-            return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
-        }catch (HttpServerErrorException.InternalServerError ex){
-            return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<?> getEmployee(@PathVariable @Min(value = 1, message = "enter valid number") Long employeeId) {
+        return new ResponseEntity<>(employeeService.getEmployee(employeeId), HttpStatus.OK);
     }
 
     @GetMapping

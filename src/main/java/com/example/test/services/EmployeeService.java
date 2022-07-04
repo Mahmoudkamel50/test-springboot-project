@@ -13,7 +13,7 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepo employeeRepo;
-    
+
     public List<Employee> getEmployees() {
         return ( List<Employee>)employeeRepo.findAll();
     }
