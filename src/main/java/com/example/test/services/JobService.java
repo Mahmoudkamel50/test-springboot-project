@@ -44,4 +44,5 @@ public class JobService {
     public Job getJob(String jobId) {
         return jobRepo.findJobByJobId(jobId);
     }
+    public Job getJobByTitle(String jobTitle){return jobRepo.findByJobTitle(jobTitle);}
 }

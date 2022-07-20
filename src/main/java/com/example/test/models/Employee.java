@@ -33,9 +33,9 @@ public class Employee {
     @Column(name = "JOB_ID")
     private String jobId;
     @Column(name = "SALARY")
-    private BigDecimal salary;
+    private Integer salary;
     @Column(name = "COMMISSION_PCT")
-    private Integer commissionPct;
+    private double commissionPct;
     @Column(name = "MANAGER_ID")
     private Long managerId;
     @Column(name = "DEPARTMENT_ID")
