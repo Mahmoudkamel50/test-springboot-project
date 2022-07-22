@@ -2,13 +2,10 @@ package com.example.test.services;
 
 import com.example.test.dto.request.EmployeeRequest;
 import com.example.test.models.Employee;
-import com.example.test.models.Job;
 import com.example.test.repositories.EmployeeRepo;
-import com.example.test.repositories.JobRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -19,9 +16,6 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepo employeeRepo;
-
-    @Autowired
-    private JobRepo jobRepo;
 
     @Autowired
     private JobService jobService;
@@ -83,13 +77,7 @@ public class EmployeeService {
             return employee;
         }
         else{
-            Job job= new Job();
-            job.setJobId(employeeRequest.getJobId());
-            job.setJobTitle(employeeRequest.getJobTitle());
-
-            jobRepo.save(job);
-
-
+            jobService.createJobByTitle(employeeRequest.getJobId() , employeeRequest.getJobTitle());
             Employee employee = new Employee();
 
             employee.setFirstName(employeeRequest.getFirstName());
