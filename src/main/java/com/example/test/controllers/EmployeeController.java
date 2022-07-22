@@ -1,6 +1,7 @@
 package com.example.test.controllers;
 
 
+import com.example.test.dto.request.EmployeeRequest;
 import com.example.test.models.Employee;
 import com.example.test.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<?> createEmployees(@RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.createEmployees(employee), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/employee-job")
+    public ResponseEntity<?> createEmployeeWithJob(@RequestBody EmployeeRequest employeeRequest) {
+        return new ResponseEntity<>(employeeService.createEmployeeWithJob(employeeRequest), HttpStatus.CREATED);
     }
 
     @PutMapping(path ="{employeeId}")

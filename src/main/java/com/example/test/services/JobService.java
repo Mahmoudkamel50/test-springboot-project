@@ -1,13 +1,12 @@
 package com.example.test.services;
 
+import com.example.test.dto.request.EmployeeRequest;
 import com.example.test.models.Job;
-import com.example.test.repositories.JobHistoryRepo;
 import com.example.test.repositories.JobRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,5 +42,14 @@ public class JobService {
 
     public Job getJob(String jobId) {
         return jobRepo.findJobByJobId(jobId);
+    }
+    public Job getJobByTitle(String jobTitle){return jobRepo.findByJobTitle(jobTitle);}
+
+    public Job createJobByTitle(String jobID, String jobTitle){
+       Job job = new Job();
+       job.setJobId(jobID);
+       job.setJobTitle(jobTitle);
+       jobRepo.save(job);
+       return job;
     }
 }
