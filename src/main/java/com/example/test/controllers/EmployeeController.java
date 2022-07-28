@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
@@ -37,7 +38,7 @@ public class EmployeeController {
     }
 
     @PostMapping(path = "/employee-job")
-    public ResponseEntity<?> createEmployeeWithJob(@RequestBody EmployeeRequest employeeRequest) {
+    public ResponseEntity<?> createEmployeeWithJob(@RequestBody @Valid EmployeeRequest employeeRequest) {
         return new ResponseEntity<>(employeeService.createEmployeeWithJob(employeeRequest), HttpStatus.CREATED);
     }
 

@@ -1,6 +1,7 @@
 package com.example.test.dto.request;
 
 import com.example.test.models.Job;
+import com.example.test.validation.TitleValidation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class EmployeeRequest implements Serializable {
     private double commissionPct;
     private Long managerId;
     private Long departmentId;
+    @TitleValidation
     private String jobTitle;
 }
