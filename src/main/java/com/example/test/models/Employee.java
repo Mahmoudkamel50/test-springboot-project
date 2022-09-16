@@ -35,7 +35,7 @@ public class Employee {
     @Column(name = "SALARY")
     private Integer salary;
     @Column(name = "COMMISSION_PCT")
-    private double commissionPct;
+    private Double commissionPct;
     @Column(name = "MANAGER_ID")
     private Long managerId;
     @Column(name = "DEPARTMENT_ID")
