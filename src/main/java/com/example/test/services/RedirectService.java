@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class TestService {
+public class RedirectService {
 
     private static final String CONTENT_TYPE_KEYWORD = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
@@ -27,7 +27,7 @@ public class TestService {
     public static final String DELETE_KEYWORD = "DELETE";
     public static final String PATCH_KEYWORD = "PATCH";
 
-    public static String sendRequest(String url, String methodType, String body, int expectedStatus) {
+    public String sendRequest(String url, String methodType, String body, int expectedStatus) {
         String responseBody = null;
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpRequestBase httpRequest = getHttpRequestBase(methodType, url);
