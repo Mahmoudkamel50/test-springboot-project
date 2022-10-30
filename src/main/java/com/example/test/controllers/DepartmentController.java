@@ -15,6 +15,11 @@ public class DepartmentController {
     @Autowired
     private  DepartmentService departmentService;
 
+    @GetMapping(path = "/byName/{departmentName}")
+    public ResponseEntity<?> getManagerIdByName(@PathVariable String departmentName){
+        return new ResponseEntity<>(departmentService.getManagerId(departmentName), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<?> getDepartments(){
         return new ResponseEntity<>(departmentService.getDepartments(), HttpStatus.OK);
