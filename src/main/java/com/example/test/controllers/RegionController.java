@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/region")
+@RequestMapping("regions")
 @RequiredArgsConstructor
 public class RegionController {
     @Autowired
@@ -20,7 +20,7 @@ public class RegionController {
         return new ResponseEntity<>(regionsService.getRegions(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{regionId}")
+    @GetMapping(path = "{regionId}")
     public ResponseEntity<?> getRegion(@PathVariable Long regionId) {
         return new ResponseEntity<>(regionsService.getRegion(regionId), HttpStatus.OK);
     }
@@ -30,12 +30,12 @@ public class RegionController {
         return new ResponseEntity<>(regionsService.createRegions(r), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{regionId}")
+    @PutMapping(path = "update/{regionId}")
     public ResponseEntity<?> updateRegions(@PathVariable Long regionId, @RequestBody Region r) {
         return new ResponseEntity<>(regionsService.updateRegions(regionId, r), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete/{regionId}")
+    @DeleteMapping(path = "delete/{regionId}")
     public ResponseEntity<?> deleteRegions(@PathVariable Long regionId) {
         regionsService.deleteRegions(regionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

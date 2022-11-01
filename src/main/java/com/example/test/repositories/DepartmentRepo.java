@@ -11,5 +11,5 @@ public interface DepartmentRepo extends CrudRepository<Department, Long> {
     Department findByDepartmentId(Long id);
     void deleteByDepartmentId(Long id);
     @Query(nativeQuery = true, value = "SELECT MANAGER_ID FROM hr.DEPARTMENTS WHERE department_name = :departmentName")
-    List<Long> queryManagerIdByDepartmentNameQuery(String departmentName);
+    DepartmentManager queryManagerIdByDepartmentNameQuery(String departmentName);
 }

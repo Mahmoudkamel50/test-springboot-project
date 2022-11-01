@@ -9,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("departments")
 @RequiredArgsConstructor
 public class DepartmentController {
     @Autowired
     private  DepartmentService departmentService;
 
-    @GetMapping(path = "/byName/{departmentName}")
+    @GetMapping(path = "{departmentName}")
     public ResponseEntity<?> getManagerIdByName(@PathVariable String departmentName){
         return new ResponseEntity<>(departmentService.getManagerId(departmentName), HttpStatus.OK);
     }
@@ -34,11 +34,11 @@ public class DepartmentController {
         return new ResponseEntity<> (departmentService.createDepartment(department), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{departmentId}")
+    @PutMapping(path = "update/{departmentId}")
     public  ResponseEntity<?> updateDepartment(@PathVariable Long departmentId, @RequestBody Department department){
         return new ResponseEntity<>(departmentService.updateDepartment(departmentId,department), HttpStatus.OK);
     }
-    @DeleteMapping(path = "/delete/{departmentId}")
+    @DeleteMapping(path = "delete/{departmentId}")
     public  ResponseEntity<?> deleteDepartment(@PathVariable Long departmentId){
         departmentService.deleteDepartment(departmentId);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);

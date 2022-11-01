@@ -51,7 +51,7 @@ public class DepartmentService {
         return departmentRepo.findByDepartmentId(depId);
     }
 
-    public List<Long> getManagerId(String departmentName) {
+    public DepartmentManager getManagerId(String departmentName) {
         return departmentRepo.queryManagerIdByDepartmentNameQuery(departmentName);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/job")
+@RequestMapping("jobs")
 @RequiredArgsConstructor
 public class JobController {
 
@@ -31,12 +31,12 @@ public class JobController {
         return new ResponseEntity<>(jobService.createJob(job), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/{jobId}")
+    @PutMapping(path = "{jobId}")
     public ResponseEntity<?> updateJob(@PathVariable String jobId, @RequestBody Job job) {
         return new ResponseEntity<>(jobService.updateJob(jobId, job), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{jobId}")
+    @DeleteMapping(path = "{jobId}")
     public ResponseEntity<?> deleteJob(@PathVariable String jobId) {
         jobService.deleteJob(jobId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

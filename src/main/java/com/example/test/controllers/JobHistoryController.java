@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/jobHistory")
+@RequestMapping("jobHistory")
 @RequiredArgsConstructor
 public class JobHistoryController {
 
@@ -21,7 +21,7 @@ public class JobHistoryController {
         return new ResponseEntity<> (jobHistoryService.getJobHistories(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "{id}")
     public ResponseEntity<?> getJobHistory(@PathVariable Long employeeId){
         return new ResponseEntity<> (jobHistoryService.getJobHistory(employeeId), HttpStatus.OK);
     }
@@ -31,12 +31,12 @@ public class JobHistoryController {
         return new ResponseEntity<>(jobHistoryService.createJobHistory(e), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{employeeId}")
+    @PutMapping(path = "update/{employeeId}")
     public  ResponseEntity<?> updateJobHistory(@PathVariable Long employeeId, @RequestBody JobHistory e){
         return new ResponseEntity<> (jobHistoryService.updateJobHistory(employeeId,e), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/{EMPLOYEE_ID}")
+    @DeleteMapping(path = "{EMPLOYEE_ID}")
     public  ResponseEntity<?> deleteJobHistory(@PathVariable Long employeeId){
         jobHistoryService.deleteJobHistory( employeeId);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);

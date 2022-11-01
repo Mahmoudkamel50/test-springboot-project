@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("employees")
 @Validated
 public class EmployeeController {
 
@@ -37,7 +37,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.createEmployees(employee), HttpStatus.CREATED);
     }
 
-    @PostMapping(path = "/employee-job")
+    @PostMapping(path = "employee-job")
     public ResponseEntity<?> createEmployeeWithJob(@RequestBody @Valid EmployeeRequest employeeRequest) {
         return new ResponseEntity<>(employeeService.createEmployeeWithJob(employeeRequest), HttpStatus.CREATED);
     }
