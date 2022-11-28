@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/location")
+@RequestMapping("locations")
 @RequiredArgsConstructor
 public class LocationController {
 
@@ -20,7 +20,7 @@ public class LocationController {
     public ResponseEntity<?> getLocations(){
         return new ResponseEntity<>(locationService.getLocations(), HttpStatus.OK);
     }
-    @GetMapping(path = "/{locationId}")
+    @GetMapping(path = "{locationId}")
     public ResponseEntity<?> getLocation(@PathVariable Long locationId){
         return new ResponseEntity<>(locationService.getLocation(locationId), HttpStatus.OK);
     }
@@ -30,12 +30,12 @@ public class LocationController {
         return new ResponseEntity<> (locationService.createLocation(e) , HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{locationId}")
+    @PutMapping(path = "update/{locationId}")
     public  ResponseEntity<?> updateLocation (@PathVariable Long locationId, @RequestBody Location e){
         return new ResponseEntity<>(locationService.updateLocation(locationId,e), HttpStatus.OK) ;
     }
 
-    @DeleteMapping(path = "/delete/{locationId}")
+    @DeleteMapping(path = "delete/{locationId}")
     public   ResponseEntity<?> deleteLocation (@PathVariable Long locationId){
         locationService.deleteLocation(locationId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

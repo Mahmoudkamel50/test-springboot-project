@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/country")
+@RequestMapping("countries")
 @RequiredArgsConstructor
 public class CountryController {
     @Autowired
@@ -21,7 +21,7 @@ public class CountryController {
         return new ResponseEntity<>( countryService.getCountries(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{countryId}")
+    @GetMapping(path = "{countryId}")
     public ResponseEntity<?> getCountry(@PathVariable String countryId){
         return new ResponseEntity<>( countryService.getCountry(countryId), HttpStatus.OK);
     }
@@ -31,12 +31,12 @@ public class CountryController {
         return new ResponseEntity<> (countryService.createCountry(country) , HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update/{countryId}")
+    @PutMapping(path = "update/{countryId}")
     public ResponseEntity<?> updateCountry(@PathVariable String countryId, @RequestBody Country country){
         return new ResponseEntity<> (countryService.updateCountry(countryId, country) , HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete/{countryId}")
+    @DeleteMapping(path = "delete/{countryId}")
     public  ResponseEntity<?> deleteCountry(@PathVariable String countryId){
         countryService.deleteCountry(countryId);
         return  new ResponseEntity<>(HttpStatus.NO_CONTENT);

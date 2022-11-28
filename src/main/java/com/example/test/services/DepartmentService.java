@@ -1,5 +1,6 @@
 package com.example.test.services;
 
+import com.example.test.dto.projection.DepartmentManager;
 import com.example.test.models.Department;
 import com.example.test.repositories.DepartmentRepo;
 import lombok.RequiredArgsConstructor;
@@ -49,5 +50,9 @@ public class DepartmentService {
 
         return departmentRepo.findByDepartmentId(depId);
     }
+
+    public DepartmentManager getManagerId(String departmentName) {
+        return departmentRepo.queryManagerIdByDepartmentNameQuery(departmentName);
     }
+}
 
